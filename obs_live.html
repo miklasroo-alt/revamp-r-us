@@ -1,0 +1,18 @@
+<body style="background:transparent;color:white;font-size:72px;text-align:center;">
+  <div id="value">Loading...</div>
+  <script>
+    const API_URL = "http://localhost:3000/obs";
+    const el = document.getElementById("value");
+    async function update() {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        el.textContent = data.value;
+      } catch(e) {
+        el.textContent = "Error fetching /obs";
+      }
+    }
+    update();
+    setInterval(update, 1000);
+  </script>
+</body>
